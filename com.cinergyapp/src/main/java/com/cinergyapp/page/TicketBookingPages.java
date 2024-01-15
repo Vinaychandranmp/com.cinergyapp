@@ -182,7 +182,7 @@ public class TicketBookingPages
     	Select s3=new Select(expiration_year);
     	s3.selectByValue("2024");
     	WebElement cvv=driver.findElement(By.xpath("//input[@name='cvv']"));
-    	cvv.sendKeys("5656");
+    	cvv.sendKeys("123");
     	WebElement billing_zip=driver.findElement(By.xpath("//input[@name='billing_zip']"));
     	billing_zip.sendKeys("48108");
     	WebElement pay_button=driver.findElement(By.xpath("//button[contains(text(),'Pay')]"));
