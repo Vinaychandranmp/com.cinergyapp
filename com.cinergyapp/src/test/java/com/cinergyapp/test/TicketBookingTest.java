@@ -22,7 +22,6 @@ public class TicketBookingTest {
     public void movieTicketBooking() throws InterruptedException {
         ticketBookingPage.select_location();
         ticketBookingPage.movies_menu_selection();
-        //ticketBookingPage.date_pick();
         ticketBookingPage.movie_selection();
         ticketBookingPage.opt_showtime();
         ticketBookingPage.seat_selection();
@@ -35,6 +34,6 @@ public class TicketBookingTest {
     @AfterTest
     public void Close_browser()
     {
-    	//ticketBookingPage.tearDown();
+    	ticketBookingPage.tearDown();
     }
 }

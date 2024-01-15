@@ -1,7 +1,5 @@
 package com.cinergyapp.page;
-
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import org.openqa.selenium.JavascriptExecutor;
@@ -11,8 +9,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -26,7 +22,6 @@ public class TicketBookingPages
 
     public WebDriver driver;
     Properties properties = new Properties();
-    //WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(15));
 
     public TicketBookingPages(WebDriver driver) {
         this.driver = driver;
@@ -62,29 +57,11 @@ public class TicketBookingPages
     	WebElement movie_menu_location=driver.findElement(By.xpath("//div[@id='navbarSupportedContent']//a[contains(text(),'Movies')]"));
     	movie_menu_location.click();
     }
-    public void date_pick() 
-    {
-    	Actions actions=new Actions(driver);
-	WebElement date_selection=driver.findElement(By.xpath("//div[@class='dropdown']//i[@class='fas fa-calendar-alt show_calendar']"));
-	actions.moveToElement(date_selection).build().perform();
-	WebElement date=driver.findElement(By.xpath("//div[contains(text(),'14')]"));
-	actions.moveToElement(date).click().perform();
-	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	WebElement date_assert = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[@id='date_text']")));
-	//element.click();
-	//WebElement date_assert=driver.findElement(By.xpath("//p[@id='date_text']"));
-	String actual_date=date_assert.getText();
-	String expected_date="Sunday, January 14";
-	Assert.assertEquals(expected_date, actual_date);
-	System.out.println(actual_date);
-	
-	
-	}
+   
     public void movie_selection()
     {	
     	WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(15));
     	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[contains(text(),'The Color Purple')]")));
-    	//wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//h3[contains(text(),'The Color Purple')]")));
     	WebElement movie_selected=driver.findElement(By.xpath("//h3[contains(text(),'The Color Purple')]"));
     	movie_selected.click();
     	WebElement dateselection=driver.findElement(By.xpath("//select[@id='choose_date']"));
@@ -98,7 +75,6 @@ public class TicketBookingPages
     }
     public void seat_selection()
     {	
-    	List<String> selectedSeatValues = new ArrayList<String>();
     	List<WebElement> selection_seat=driver.findElements(By.xpath("//div[@class='seats pb-5']//li"));
     	((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", selection_seat.get(0));
     	int count=0;
